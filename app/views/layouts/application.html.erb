@@ -10,13 +10,10 @@
   </head>
 
   <body>
+    <%= render 'layouts/navbar' %>
+    
     <div class="container">
-      <% if flash[:notice] %>
-        <p class="text-success"><%= flash[:notice] %></p>
-      <% end %>
-      <% if flash[:alert] %>
-        <p class="text-danger"><%= flash[:alert] %></p>
-      <% end %>
+      <%= render 'layouts/flash_technologies' %>
       
       <%= yield %>
     </div>

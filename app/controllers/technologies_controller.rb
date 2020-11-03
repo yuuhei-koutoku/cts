@@ -1,4 +1,6 @@
 class TechnologiesController < ApplicationController
+  before_action :set_technology, only: [:edit, :update, :destroy]
+  
   def index
     @technologies = Technology.all
   end
@@ -13,34 +15,40 @@ class TechnologiesController < ApplicationController
   def create
     @technology = Technology.new(technology_params)
     if @technology.save
-      redirect_to root_path, notice: '保存しました'
+      flash[:success] = '正常に投稿されました'
+      redirect_to root_path
     else
-      flash[:alert] = '保存できませんでした'
+      flash.now[:danger] = '投稿されませんでした'
       render :new
     end
   end
 
   def edit
-    @technology = Technology.find(params[:id])
   end
   
   def update
-    @technology = Technology.find(params[:id])
     if @technology.update(technology_params)
-      redirect_to root_path, notice: '保存しました'
+      flash[:success] = '正常に更新されました'
+      redirect_to root_path
     else
-      flash[:alert] = '保存できませんでした'
+      flash.now[:danger] = '更新されませんでした'
       render :edit
     end
   end
   
   def destroy
-    @technology = Technology.find(params[:id])
     @technology.destroy
-    redirect_to root_path, notice: '削除しました'
+    
+    flash[:success] = '正常に削除されました'
+    redirect_to root_path
   end
   
   private
+    
+    def set_technology
+      @technology = Technology.find(params[:id])
+    end
+    
     def technology_params
       params.require(:technology).permit(:title, :content, :company, :name)
     end
