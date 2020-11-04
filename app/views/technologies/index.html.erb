@@ -25,6 +25,7 @@
         <% end %>
       </tbody>
     </table>
+    <%= paginate @technologies %>
     <div>
       <%= link_to '新規投稿', new_technology_path, class: "btn btn-primary" %>
     </div>

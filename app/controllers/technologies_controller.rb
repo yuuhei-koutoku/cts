@@ -2,7 +2,7 @@ class TechnologiesController < ApplicationController
   before_action :set_technology, only: [:edit, :update, :destroy]
   
   def index
-    @technologies = Technology.all
+    @technologies = Technology.order(id: :desc).page(params[:page]).per(10)
   end
 
   def show
