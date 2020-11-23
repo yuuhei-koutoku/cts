@@ -6,7 +6,7 @@
         <tr>
           <th>ID</th>
           <th>タイトル</th>
-          <th>内容</th>
+          <th>説明</th>
           <th>会社名</th>
           <th>名前</th>
           <th>メニュー</th>
@@ -20,7 +20,7 @@
             <td><%= technology.content %></td>
             <td><%= technology.company %></td>
             <td><%= technology.name %></td>
-            <td>[ <%= link_to '編集', edit_technology_path(technology)%> ] [ <%= link_to '削除', technology_path(technology), method: :delete, data:{ confirm: '本当に削除してもよろしいですか？' } %> ]</td>
+            <td>[ <%= link_to '編集', edit_technology_path(technology) %> ] [ <%= link_to '削除', technology_path(technology), method: :delete, data:{ confirm: '本当に削除してもよろしいですか？' } %> ]</td>
           </tr>
         <% end %>
       </tbody>

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'comments/edit'
   root 'technologies#index'
-  resources :technologies
+  resources :technologies do
+    resources :comments
+  end
 end
