@@ -49,6 +49,6 @@ class TechnologiesController < ApplicationController
     end
     
     def technology_params
-      params.require(:technology).permit(:title, :content, :company, :name)
+      params.require(:technology).permit(:title, :content)
     end
 end

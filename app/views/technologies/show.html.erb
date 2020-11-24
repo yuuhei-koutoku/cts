@@ -4,12 +4,6 @@
     <div>
       説明: <%= @technology.content %>
     </div>
-    <div>
-      会社名: <%= @technology.company %>
-    </div>
-    <div>
-      名前: <%= @technology.name %>
-    </div>
     <hr>
     
     <div>
@@ -19,8 +13,6 @@
           <thead class="thead-light">
             <tr>
               <td>説明</td>
-              <td>会社名</td>
-              <td>名前</td>
               <td>メニュー</td>
             </tr>
           </thead>
@@ -29,12 +21,6 @@
               <tr>
                 <td>
                   <%= comment.content %>
-                </td>
-                <td>
-                  <%= comment.company %>
-                </td>
-                <td>
-                  <%= comment.name %>
                 </td>
                 <td>
                   [ <%= link_to '編集', edit_technology_comment_path(@technology, comment) %> ]
@@ -68,14 +54,6 @@
       <div class="form-group">
         <label>説明</label>
         <%= f.text_area :content, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <label>会社名</label>
-        <%= f.text_field :company, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <label>名前</label>
-        <%= f.text_field :name, class: 'form-control' %>
       </div>
       <div class="text-center">
         <%= f.submit "送信", class: 'btn btn-primary' %>
