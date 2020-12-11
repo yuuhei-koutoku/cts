@@ -6,17 +6,27 @@
         <tr>
           <th>ID</th>
           <th>タイトル</th>
+          <th>画像</th>
           <th>説明</th>
+          <th>名前</th>
           <th>メニュー</th>
+          <th>更新日時</th>
         </tr>
       </thead>
       <tbody>
-        <% @technologies.each do |technology| %>
+        <% @technologies.each do |tech| %>
           <tr>
-            <td><%= technology.id %></td>
-            <td><%= link_to technology.title, technology_path(technology) %></td>
-            <td><%= technology.content %></td>
-            <td>[ <%= link_to '編集', edit_technology_path(technology) %> ] [ <%= link_to '削除', technology_path(technology), method: :delete, data:{ confirm: '本当に削除してもよろしいですか？' } %> ]</td>
+            <td><%= tech.id %></td>
+            <td><%= link_to tech.title, technology_path(tech) %></td>
+            <td>
+              <% if tech.image.attached? %>
+                <%= image_tag tech.image.variant(resize: "160x90") %>
+              <% end %>
+            </td>
+            <td><%= tech.content %></td>
+            <td><%= tech.user.name %></td>
+            <td>[ <%= link_to '編集', edit_technology_path(tech) %> ] [ <%= link_to '削除', technology_path(tech), method: :delete, data:{ confirm: '本当に削除してもよろしいですか？' } %> ]</td>
+            <td><%= tech.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
           </tr>
         <% end %>
       </tbody>

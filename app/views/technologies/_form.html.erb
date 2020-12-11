@@ -1,18 +1,14 @@
 <%= form_with model: @technology, local: true do |f| %>
   
-  <% if @technology.errors.any? %>
-    <div id="error_explanation">
-      <ul>
-        <% @technology.errors.full_messages.each do |err| %>
-          <li><%= err %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'layouts/error_messages', model: f.object %>
   
   <div class="form-group">
     <label>タイトル</label>
     <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <label>画像</label>
+    <%= f.file_field :image, class: "form-control" %>
   </div>
   <div class="form-group">
     <label>説明</label>

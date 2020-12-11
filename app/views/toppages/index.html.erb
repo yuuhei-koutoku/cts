@@ -1,0 +1,14 @@
+<div class="center jumbotron">
+  <div class="text-center">
+    <h1>建設技術投稿サイトへようこそ</h1><br>
+    <h4>このサイトは建設関係の技術情報を投稿するサイトです。</h4><br>
+    <h4>お気軽に投稿してみてください！</h4><br>
+    <% if logged_in? %>
+      <%= link_to '投稿一覧ページへ', technologies_path, class: 'btn btn-lg btn-primary' %><br><br>
+      <%= link_to '新規投稿ページへ', new_technology_path, class: 'btn btn-lg btn-primary' %>
+    <% else %>
+      <%= link_to 'ログイン', login_path, class: 'btn btn-lg btn-primary' %><br><br>
+      <%= link_to 'アカウント作成', signup_path, class: 'btn btn-lg btn-primary' %>
+    <% end %>
+  </div>
+</div>

@@ -2,6 +2,11 @@
   <div class="col-md-12">
     <h2><%= @technology.title %></h2>
     <div>
+      <% if @technology.image.attached? %>
+        <%= image_tag @technology.image.variant(resize: "160x90") %>
+      <% end %>
+    </div>
+    <div>
       説明: <%= @technology.content %>
     </div>
     <hr>
@@ -13,19 +18,25 @@
           <thead class="thead-light">
             <tr>
               <td>説明</td>
+              <td>名前</td>
               <td>メニュー</td>
+              <td>更新日時</td>
             </tr>
           </thead>
           <tbody>
-            <% @technology.comments.each do |comment| %>
+            <% @technology.comments.each do |com| %>
               <tr>
                 <td>
-                  <%= comment.content %>
+                  <%= com.content %>
                 </td>
                 <td>
-                  [ <%= link_to '編集', edit_technology_comment_path(@technology, comment) %> ]
-                  [ <%= link_to '削除', technology_comment_path(@technology, comment), method: :delete, data:{ confirm: '本当に削除してもよろしいですか？'} %> ]  
+                  <%= com.user.name %>
                 </td>
+                <td>
+                  [ <%= link_to '編集', edit_technology_comment_path(@technology, com) %> ]
+                  [ <%= link_to '削除', technology_comment_path(@technology, com), method: :delete, data:{ confirm: '本当に削除してもよろしいですか？'} %> ]  
+                </td>
+                <td><%= com.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
               </tr>
             <% end %>
           </tbody>
@@ -40,15 +51,7 @@
     <h3>新しいコメントを投稿します。</h3>
     
     <%= form_with model: [@technology,@comment], local: true do |f| %>
-      <% if @comment.errors.any? %>
-        <div id="error_explanation">
-          <ul>
-            <% @comment.errors.full_messages.each do |err| %>
-              <li><%= err %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+      <%= render 'layouts/error_messages', model: f.object %>
       
       <%= f.hidden_field :technology_id, { value: @technology.id} %>
       <div class="form-group">
@@ -62,7 +65,7 @@
     <% end %>
     
     <div>
-      <%= link_to '投稿一覧に戻る', root_path %>
+      <%= link_to '投稿一覧ページに戻る', technologies_path %>
     </div>
   </div>
 </div>

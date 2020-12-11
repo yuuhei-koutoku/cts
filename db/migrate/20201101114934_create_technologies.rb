@@ -3,6 +3,7 @@ class CreateTechnologies < ActiveRecord::Migration[5.2]
     create_table :technologies do |t|
       t.string :title
       t.string :content
+      t.references :user, foreign_key: true
 
       t.timestamps
     end

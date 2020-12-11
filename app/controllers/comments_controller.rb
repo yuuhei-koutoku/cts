@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
+  before_action :require_user_logged_in, only: [:edit]
   before_action :set_technology, only: [:create, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :destroy]
   
   def create
     @comment = Comment.new(comment_params)
@@ -7,6 +9,7 @@ class CommentsController < ApplicationController
     if @comment.save
       flash[:success] = '正常に投稿されました'
       redirect_to technology_path(@technology)
+      #redirect_to technology_path(@technology)
     else
       #binding.pry
       flash.now[:danger] = '投稿されませんでした'
@@ -44,6 +47,14 @@ class CommentsController < ApplicationController
     end
     
     def comment_params
-      params.require(:comment).permit(:content, :technology_id,)
+      params.require(:comment).permit(:content, :technology_id).merge(user_id: current_user.id)
+    end
+    
+    def correct_user
+      #binding.pry
+      @comment = current_user.comments.find_by(id: params[:id])
+      unless @comment
+        redirect_to technology_path(@technology)
+      end
     end
 end
