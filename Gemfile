@@ -60,3 +60,7 @@ gem 'pry'
 
 #バリアントを有効にする（画像投稿）
 gem 'image_processing', '~> 1.2'
+
+group :production do
+  gem 'pg', '>= 0.18', '< 2.0'
+end
