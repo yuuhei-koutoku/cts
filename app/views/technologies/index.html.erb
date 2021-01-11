@@ -1,39 +1,25 @@
-<h2>投稿一覧</h2>
-<div class="row">
-  <div class="col-md-12">
-    <table class="table table-striped">
-      <thead class="thead-light">
-        <tr>
-          <th>ID</th>
-          <th>タイトル</th>
-          <th>画像</th>
-          <th>説明</th>
-          <th>名前</th>
-          <th>メニュー</th>
-          <th>更新日時</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @technologies.each do |tech| %>
-          <tr>
-            <td><%= tech.id %></td>
-            <td><%= link_to tech.title, technology_path(tech) %></td>
-            <td>
-              <% if tech.image.attached? %>
-                <%= image_tag tech.image.variant(resize: "160x90") %>
-              <% end %>
-            </td>
-            <td><%= tech.content %></td>
-            <td><%= tech.user.name %></td>
-            <td>[ <%= link_to '編集', edit_technology_path(tech) %> ] [ <%= link_to '削除', technology_path(tech), method: :delete, data:{ confirm: '本当に削除してもよろしいですか？' } %> ]</td>
-            <td><%= tech.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
-          </tr>
+<u><h2 class='text-center'>投稿一覧ページ</h2></u>
+  <% @technologies.each do |tech| %>
+  <div class='mt-5'>
+    <h3 class='h4'><%= link_to tech.title, technology_path(tech), class: 'text-muted' %></h3>
+    <div class="row">
+      <div class="col-md-3">
+        <% if tech.image.attached? %>
+          <%= image_tag 'no_image.jpg', width: '256' %>
+          <%#= image_tag tech.image.variant(resize: "144x256.128") %>
+        <% else %>
+          <%= image_tag 'no_image.jpg', width: '256' %>
         <% end %>
-      </tbody>
-    </table>
-    <%= paginate @technologies %>
-    <div>
-      <%= link_to '新規投稿', new_technology_path, class: "btn btn-primary" %>
+      </div>
+      <div class="col-md-9">
+        <div class='tech_text'><%= tech.content %></div>
+        <div class='remarks text-right mt-2'>
+          <span class="text-muted beside mb-0 mr-10"><span class=mr-2>著者名:</span><%= tech.user.name %></span>
+          <span><span class=mr-2>更新日時:</span><%= tech.updated_at.strftime("%Y-%m-%d %H:%M") %></span>
+          <span>[ <%= link_to '編集', edit_technology_path(tech) %> ] [ <%= link_to '削除', technology_path(tech), method: :delete, data:{ confirm: '本当に削除してもよろしいですか？' } %> ]</span>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+  <% end %>
+<%= paginate @technologies %>

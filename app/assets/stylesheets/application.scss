@@ -16,3 +16,15 @@
     0 -1px 0 black
 }
 
+.tech_text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .remarks > span {
+  display: block;
+  }
+}
