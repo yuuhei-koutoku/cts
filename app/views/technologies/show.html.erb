@@ -1,4 +1,5 @@
-<div class="row">
+<u><h2 class='text-center'>投稿詳細ページ</h2></u>
+<div class="row mt-5">
   <div class="col-md-12">
     <h4><%= @technology.title %></h4>
     <div class='text-center'>
@@ -46,7 +47,7 @@
       <%= f.hidden_field :technology_id, { value: @technology.id} %>
       <div class="form-group">
         <label>説明</label>
-        <%= f.text_area :content, class: 'form-control' %>
+        <%= f.text_area :content, class: 'form-control', rows: "6" %>
       </div>
       <div class="text-center">
         <%= f.submit "送信", class: 'btn btn-primary' %>
