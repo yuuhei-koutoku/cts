@@ -1,16 +1,61 @@
 <div class="row">
   <div class="col-md-12">
-    <h2><%= @technology.title %></h2>
-    <div>
+    <h4><%= @technology.title %></h4>
+    <div class='text-center'>
       <% if @technology.image.attached? %>
         <%= image_tag @technology.image.variant(resize: "160x90") %>
       <% end %>
     </div>
-    <div>
-      説明: <%= @technology.content %>
+    <div class='show-text'>
+      <%= @technology.content %>
     </div>
-    <hr>
+    <div class='remarks text-right mt-2'>
+      <span class="mb-0 mr-10"><span class=mr-2>投稿者名:</span><%= @technology.user.name %></span>
+      <span class='ml-4'><span class='mr-2'>更新日時:</span><%= @technology.updated_at.strftime("%Y-%m-%d %H:%M") %></span>
+      <span class='ml-4'>
+        [ <%= link_to '編集', edit_technology_path(@technology) %> ]
+        [ <%= link_to '削除', technology_path(@technology), method: :delete, data:{ confirm: '本当に削除してもよろしいですか？' } %> ]
+      </span>
+    </div>
+    <hr size="5" noshade>
     
+    <div>
+      <h3>コメント一覧</h3>
+        <% if @technology.comments.any? %>
+          <% @technology.comments.each do |com| %>
+            <p class='mb-0'><%= com.content %></p>
+            <div class='remarks text-right mt-2'>
+              <span class="mb-0"><span class=mr-2>投稿者名:</span><%= com.user.name %></span>
+              <span class='ml-4'><span class='mr-2'>更新日時:</span><%= com.updated_at.strftime("%Y-%m-%d %H:%M") %></span>
+              <span class='ml-4'>
+                [ <%= link_to '編集', edit_technology_comment_path(@technology, com) %> ]
+                [ <%= link_to '削除', technology_comment_path(@technology, com), method: :delete, data:{ confirm: '本当に削除してもよろしいですか？'} %> ]  
+              </span>
+            </div>
+            <hr>
+          <% end %>
+        <% else %>
+          <p>まだコメントはありません。</p>
+        <% end %>
+    </div>
+    
+    <h3>新しいコメントを投稿します。</h3>
+    <%= form_with model: [@technology,@comment], local: true do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      
+      <%= f.hidden_field :technology_id, { value: @technology.id} %>
+      <div class="form-group">
+        <label>説明</label>
+        <%= f.text_area :content, class: 'form-control' %>
+      </div>
+      <div class="text-center">
+        <%= f.submit "送信", class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% if false %>
     <div>
       <h3>コメント一覧</h3>
       <table class="table table-striped">
@@ -47,25 +92,4 @@
       </table>
       
     </div>
-    
-    <h3>新しいコメントを投稿します。</h3>
-    
-    <%= form_with model: [@technology,@comment], local: true do |f| %>
-      <%= render 'layouts/error_messages', model: f.object %>
-      
-      <%= f.hidden_field :technology_id, { value: @technology.id} %>
-      <div class="form-group">
-        <label>説明</label>
-        <%= f.text_area :content, class: 'form-control' %>
-      </div>
-      <div class="text-center">
-        <%= f.submit "送信", class: 'btn btn-primary' %>
-      </div>
-    
-    <% end %>
-    
-    <div>
-      <%= link_to '投稿一覧ページに戻る', technologies_path %>
-    </div>
-  </div>
-</div>
+<% end %>
