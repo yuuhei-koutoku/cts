@@ -4,7 +4,7 @@ class TechnologiesController < ApplicationController
   before_action :correct_user, only: [:edit, :destroy]
   
   def index
-    @technologies = Technology.order(id: :desc).page(params[:page]).per(10)
+    @technologies = Technology.order(id: :desc).page(params[:page]).per(5)
     #@user = User.find_by(name: name).(technology_params)
     #@technologies = User.find_by(name: params[:name])
   end
