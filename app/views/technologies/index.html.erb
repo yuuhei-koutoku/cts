@@ -3,10 +3,9 @@
 <div class='mt-5'>
   <h3 class='h4'><%= link_to tech.title, technology_path(tech), class: 'text-muted' %></h3>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 index_image text-center">
       <% if tech.image.attached? %>
-        <%#= image_tag 'no_image.jpg', width: '256' %>
-        <%= image_tag tech.image.variant(resize: "144x256.128") %>
+        <%= image_tag tech.image.variant(resize: "256x144") %>
       <% else %>
         <%= image_tag 'no_image.jpg', width: '256' %>
       <% end %>
