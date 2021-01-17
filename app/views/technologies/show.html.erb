@@ -4,11 +4,11 @@
     <h4><%= @technology.title %></h4>
     <div class='text-center'>
       <% if @technology.image.attached? %>
-        <%= image_tag @technology.image.variant(resize: "160x90") %>
+        <%= image_tag @technology.image.variant(resize: "667x375"), class: 'show_image' %>
       <% end %>
     </div>
-    <div class='show-text'>
-      <%= @technology.content %>
+    <div class='show_text'>
+      <%= simple_format(@technology.content) %>
     </div>
     <div class='remarks text-right mt-2'>
       <span class="mb-0 mr-10"><span class=mr-2>投稿者名:</span><%= @technology.user.name %></span>
@@ -46,51 +46,12 @@
       
       <%= f.hidden_field :technology_id, { value: @technology.id} %>
       <div class="form-group">
-        <label>説明</label>
+        <label>コメント</label>
         <%= f.text_area :content, class: 'form-control', rows: "6" %>
       </div>
-      <div class="text-center">
+      <div class="text-center mb-3">
         <%= f.submit "送信", class: 'btn btn-primary' %>
       </div>
     <% end %>
   </div>
 </div>
-
-<% if false %>
-    <div>
-      <h3>コメント一覧</h3>
-      <table class="table table-striped">
-        <% if @technology.comments.any? %>
-          <thead class="thead-light">
-            <tr>
-              <td>説明</td>
-              <td>名前</td>
-              <td>メニュー</td>
-              <td>更新日時</td>
-            </tr>
-          </thead>
-          <tbody>
-            <% @technology.comments.each do |com| %>
-              <tr>
-                <td>
-                  <%= com.content %>
-                </td>
-                <td>
-                  <%= com.user.name %>
-                </td>
-                <td>
-                  [ <%= link_to '編集', edit_technology_comment_path(@technology, com) %> ]
-                  [ <%= link_to '削除', technology_comment_path(@technology, com), method: :delete, data:{ confirm: '本当に削除してもよろしいですか？'} %> ]  
-                </td>
-                <td><%= com.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        <% else %>
-          <p>まだコメントはありません。</p>
-        <% end %>
-        
-      </table>
-      
-    </div>
-<% end %>

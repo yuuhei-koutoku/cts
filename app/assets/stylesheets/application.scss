@@ -23,12 +23,13 @@
   overflow: hidden;
 }
 
+/* スマホの場合 */
 @media screen and (max-width: 768px) {
   .remarks > span {
-  display: block;
+    display: block;
   }
-}
-
-.show_text {
-  word-wrap: break-word;
+  
+  .show_image {
+    max-width: 100%;
+  }
 }
