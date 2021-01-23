@@ -15,23 +15,3 @@
       <p class="h5 mt-2"><%= link_to '日刊建設工業新聞', 'https://www.decn.co.jp/' %><span class="introduction">から一部引用しております。</span></p>
   </div>
 </div>
-
-<% if false %>
-<div class="center toppage_image">
-  <div class="text-center">
-    <div class="introduction">
-      <p class="h2 pt-5">建設技術投稿サイトへようこそ</p>
-      <p class="h4 mb-0">このサイトは建設関係の技術情報を投稿するサイトです。</p>
-      <p class="h4">お気軽に投稿してみてください！</p>
-    </div>
-    <% if logged_in? %>
-      <%= link_to '投稿一覧ページへ', technologies_path, class: 'btn btn-lg btn-primary mb-2' %><br>
-      <%= link_to '新規投稿ページへ', new_technology_path, class: 'btn btn-lg btn-primary' %>
-    <% else %>
-      <%= link_to 'ログイン', login_path, class: 'btn btn-lg btn-primary mb-2' %><br>
-      <%= link_to 'アカウント作成', signup_path, class: 'btn btn-lg btn-primary' %>
-    <% end %>
-      <p class="h5 mt-2"><%= link_to '日刊建設工業新聞', 'https://www.decn.co.jp/' %><span class="introduction">から一部引用しております。</span></p>
-  </div>
-</div>
-<% end %>
