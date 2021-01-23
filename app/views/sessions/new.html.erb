@@ -18,11 +18,14 @@
       <%= f.submit 'ログイン', class: 'btn btn-primary btn-block' %>
     <% end %>
 
-    <p><%= link_to 'アカウント作成はこちら', signup_path %></p>
-    <div class='text-center mt-5'>
-      <p>閲覧用アカウント</p>
-      <p>メールアドレス：　guest@email.jp</p>
-      <p>パスワード：　guest</p>
+    <p><%= link_to 'アカウント作成はこちら', signup_path %></p><br>
+    
+    <div class="sessions-box">
+      <span class="box-title">閲覧用アカウント</span>
+      <div class='text-center'>
+        <p>メールアドレス：　guest@email.jp</p>
+        <p>パスワード：　guest</p>
+      </div>
     </div>
   </div>
 </div>

@@ -16,6 +16,33 @@
     0 -1px 0 black
 }
 
+/* 閲覧用アカウント */
+.sessions-box {
+    position: relative;
+    margin: 2em 0;
+    padding: 0.5em 1em;
+    border: solid 3px #62c1ce;
+}
+.sessions-box .box-title {
+    position: absolute;
+    display: inline-block;
+    top: -27px;
+    left: -3px;
+    padding: 0 9px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 17px;
+    background: #62c1ce;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 5px 5px 0 0;
+}
+.sessions-box p {
+    margin: 0; 
+    padding: 0;
+}
+
+
 .tech_text {
   display: -webkit-box;
   -webkit-box-orient: vertical;

@@ -56,5 +56,8 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   # ファイルをローカルに保存する
-  config.active_storage.service = :local
+  # config.active_storage.service = :local
+  
+  # 開発環境(development)でAmazon S3の動作を確認
+  config.active_storage.service = :amazon
 end

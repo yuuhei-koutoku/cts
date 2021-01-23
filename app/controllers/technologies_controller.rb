@@ -60,7 +60,7 @@ class TechnologiesController < ApplicationController
     def correct_user
       @technology = current_user.technologies.find_by(id: params[:id])
       unless @technology
-        redirect_to technologies_path
+        redirect_back(fallback_location: root_path)
       end
     end
 end
