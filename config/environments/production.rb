@@ -88,4 +88,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  
+  # 本番環境(production)の保存先を:localから:amazonに変更
+  config.active_storage.service = :amazon
 end
