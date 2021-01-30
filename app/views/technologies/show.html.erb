@@ -22,8 +22,8 @@
     
     <div>
       <h3>コメント一覧</h3>
-        <% if @technology.comments.any? %>
-          <% @technology.comments.each do |com| %>
+        <% if @comments.any? %>
+          <% @comments.each do |com| %>
             <p class='mb-0'><%= com.content %></p>
             <div class='remarks text-right mt-2'>
               <span class="mb-0"><span class=mr-2>投稿者名:</span><%= com.user.name %></span>
