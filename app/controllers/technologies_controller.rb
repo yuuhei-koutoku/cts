@@ -4,13 +4,12 @@ class TechnologiesController < ApplicationController
   before_action :correct_user, only: [:edit, :destroy]
   
   def index
-    @technologies = Technology.order(id: :desc).page(params[:page]).per(5)
-    #@user = User.find_by(name: name).(technology_params)
-    #@technologies = User.find_by(name: params[:name])
+    @technologies = Technology.includes([:user]).includes([image_attachment: :blob]).order(id: :desc).page(params[:page]).per(5)
   end
   
   def show
     @comment = Comment.new
+    @comments = @technology.comments.includes([:user])
   end
   
   def new
@@ -44,7 +43,6 @@ class TechnologiesController < ApplicationController
   def destroy
     @technology.destroy
     flash[:success] = '正常に削除されました'
-    #redirect_back(fallback_location: technologies_path)
     redirect_to technologies_path
   end
   
