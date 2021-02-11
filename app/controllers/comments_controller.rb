@@ -17,7 +17,6 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @comment = @technology.comments.find(params[:id])
   end
 
   def update
@@ -32,7 +31,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = @technology.comments.find(params[:id])
     @comment.destroy
     redirect_to technology_path(@technology)
     flash[:success] = '正常に削除されました'
