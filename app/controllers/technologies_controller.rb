@@ -68,7 +68,8 @@ class TechnologiesController < ApplicationController
   end
   
   def correct_user_is_guest?
-    if corrent_user.email == 'guest@email.jp' 
+    if current_user.email == 'guest@email.jp' 
+      flash[:danger] = 'ゲストユーザーなので投稿できません。'
       redirect_back(fallback_location: root_path)
     end
   end
