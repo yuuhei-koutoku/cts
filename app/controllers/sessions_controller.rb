@@ -23,6 +23,18 @@ class SessionsController < ApplicationController
     redirect_to root_url
   end
 
+  def new_guest
+    user = User.find_by(email: 'guest@email.jp')
+    if user
+      session[:user_id] = user.id
+      flash[:success] = 'ゲストユーザーとしてログインしました。'
+      redirect_to root_path
+    else
+      flash[:success] = 'ゲストユーザーとしてログイン失敗しました。'
+      redirect_to root_path
+    end
+  end
+
   private
 
   def login(email, password)

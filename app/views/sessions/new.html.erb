@@ -19,13 +19,8 @@
     <% end %>
 
     <p><%= link_to 'アカウント作成はこちら', signup_path %></p><br>
-    
-    <div class="sessions-box">
-      <span class="box-title">閲覧用アカウント</span>
-      <div class='text-center'>
-        <p>メールアドレス：　guest@email.jp</p>
-        <p>パスワード：　guest</p>
-      </div>
-    </div>
+    <%= form_with(url: guest_login_path, scope: :session, local: true) do |f| %>
+      <%= f.submit 'ゲストログイン(閲覧用）', class: 'btn btn-warning btn-block', method: :post %>
+    <% end %>
   </div>
 </div>

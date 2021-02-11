@@ -2,24 +2,21 @@ class CommentsController < ApplicationController
   before_action :require_user_logged_in, only: [:edit]
   before_action :set_technology, only: %i[create edit update destroy]
   before_action :correct_user, only: %i[edit destroy]
+  before_action :correct_user_is_guest?, only: %i[create update]
 
   def create
     @comment = Comment.new(comment_params)
-    # binding.pry
     if @comment.save
       flash[:success] = '正常に投稿されました'
       redirect_to technology_path(@technology)
-      # redirect_to technology_path(@technology)
     else
-      # binding.pry
+      @comments = @technology.comments.includes([:user])
       flash.now[:danger] = '投稿されませんでした'
       render 'technologies/show'
-      # redirect_to technology_path(@technology)
     end
   end
 
   def edit
-    # binding.pry
     @comment = @technology.comments.find(params[:id])
   end
 
@@ -52,10 +49,16 @@ class CommentsController < ApplicationController
   end
 
   def correct_user
-    # binding.pry
     @comment = current_user.comments.find_by(id: params[:id])
     unless @comment
       redirect_to technology_path(@technology)
+    end
+  end
+  
+  def correct_user_is_guest?
+    if current_user.email == 'guest@email.jp' 
+      flash[:danger] = 'ゲストユーザーなので投稿できません。'
+      redirect_back(fallback_location: root_path)
     end
   end
 end
