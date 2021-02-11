@@ -19,10 +19,8 @@
     <% end %>
 
     <p><%= link_to 'アカウント作成はこちら', signup_path %></p><br>
-    <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
-      <%= f.hidden_field :email, value: 'guest@email.jp' %>
-      <%= f.hidden_field :password, value: 'guest' %>
-      <%= f.submit 'ゲストログインする', class: 'btn btn-warning btn-block' %>
+    <%= form_with(url: guest_login_path, scope: :session, local: true) do |f| %>
+      <%= f.submit 'ゲストログイン(閲覧用）', class: 'btn btn-warning btn-block', method: :post %>
     <% end %>
   </div>
 </div>

@@ -5,21 +5,17 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    # binding.pry
     if @comment.save
       flash[:success] = '正常に投稿されました'
       redirect_to technology_path(@technology)
-      # redirect_to technology_path(@technology)
     else
-      # binding.pry
+      @comments = @technology.comments.includes([:user])
       flash.now[:danger] = '投稿されませんでした'
       render 'technologies/show'
-      # redirect_to technology_path(@technology)
     end
   end
 
   def edit
-    # binding.pry
     @comment = @technology.comments.find(params[:id])
   end
 
@@ -52,7 +48,6 @@ class CommentsController < ApplicationController
   end
 
   def correct_user
-    # binding.pry
     @comment = current_user.comments.find_by(id: params[:id])
     unless @comment
       redirect_to technology_path(@technology)

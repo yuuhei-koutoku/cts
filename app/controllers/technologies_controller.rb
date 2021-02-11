@@ -2,6 +2,7 @@ class TechnologiesController < ApplicationController
   before_action :require_user_logged_in, only: %i[index show new edit]
   before_action :set_technology, only: %i[show edit update destroy]
   before_action :correct_user, only: %i[edit destroy]
+  before_action :correct_user_is_guest?, only: %i[create update]
 
   def index
     @technologies = Technology.includes([:user])
@@ -62,6 +63,12 @@ class TechnologiesController < ApplicationController
   def correct_user
     @technology = current_user.technologies.find_by(id: params[:id])
     unless @technology
+      redirect_back(fallback_location: root_path)
+    end
+  end
+  
+  def correct_user_is_guest?
+    if corrent_user.email == 'guest@email.jp' 
       redirect_back(fallback_location: root_path)
     end
   end
