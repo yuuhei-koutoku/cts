@@ -19,8 +19,7 @@
     <% end %>
 
     <p><%= link_to 'アカウント作成はこちら', signup_path %></p><br>
-    <%= form_with(url: guest_login_path, scope: :session, local: true) do |f| %>
-      <%= f.submit 'ゲストログイン(閲覧用）', class: 'btn btn-warning btn-block', method: :post %>
-    <% end %>
+    
+    <%= link_to 'ゲストログイン(閲覧用）', guest_login_path,  class: 'btn btn-warning btn-block', method: :post %>
   </div>
 </div>
