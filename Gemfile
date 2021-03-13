@@ -41,6 +41,7 @@ group :development, :test do
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
   gem 'rubocop-thread_safety'
+  gem 'rspec-rails', '~> 4.1.0'
 end
 
 group :development do
