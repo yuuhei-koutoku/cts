@@ -9,12 +9,10 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
-require 'rails_helper'
-
-RSpec.describe User, type: :model do
-  describe '.create' do
-    it '生成できる' do
-      expect(create(:user)).to be_present
-    end
+FactoryBot.define do
+  factory :user do
+    sequence(:name) { |n| "TEST_NAME#{n}"}
+    sequence(:email) { |n| "TEST#{n}@example.com"}
+    sequence(:password_digest) { |n| "passward_#{n}"}
   end
 end
