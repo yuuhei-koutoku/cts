@@ -38,5 +38,4 @@
 5.active_storage_blobs・・・ActiveStorageで使用する。
 
 (7)リレーション
-usersテーブルとtechnologiesは1対多の関係である。
-また、technologiesテーブルとcommentsテーブルも1対多の関係である。
+![erd-image](public/CTS_erd.png)
