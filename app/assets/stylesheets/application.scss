@@ -1,7 +1,7 @@
 @import "bootstrap";
 
 .toppage_image {
-  background-image: url("/toppage.jpg");
+  background-image: url("/toppage_r2.jpg");
   background-size: cover;
   height: 485px;
   background-position: 0% 0%;
@@ -15,6 +15,33 @@
     -1px 0 0 black,
     0 -1px 0 black
 }
+
+
+/* トップページのボタン */
+.button {
+  font-size: 20px;
+  color: white;
+  padding: 10px;
+  width: 200px;
+  margin: 0 50px;
+  background-color: #4689FF;
+  cursor: pointer;
+  box-shadow: 0 7px #005FFF;
+  display: inline-block;
+  border-radius: 25px;
+}
+
+.button:active {
+  position: relative;
+  top: 6px;
+  box-shadow: none;
+  text-decoration: none;
+}
+
+.button:hover {
+  text-decoration: none;
+}
+
 
 .tech_text {
   display: -webkit-box;
